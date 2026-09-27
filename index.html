@@ -1,0 +1,82 @@
+if (path.startsWith("/play/")) {
+  const key = path.split("/play/")[1];
+
+  return new Response(`
+<!DOCTYPE html>
+<html>
+<head>
+<title>Player</title>
+
+<style>
+body {
+  margin:0;
+  font-family:Arial;
+  background:#0b1220;
+  color:white;
+}
+
+.sidebar {
+  width:240px;
+  height:100vh;
+  position:fixed;
+  background:#111827;
+  padding:20px;
+}
+
+.main {
+  margin-left:260px;
+  padding:30px;
+}
+
+.card {
+  background:#1f2937;
+  padding:20px;
+  border-radius:12px;
+}
+
+video {
+  width:100%;
+  max-width:500px;
+  border-radius:10px;
+}
+
+.btn {
+  padding:10px 15px;
+  background:#2563eb;
+  border-radius:8px;
+  text-decoration:none;
+  color:white;
+  margin-right:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>📁 GoFile</h2>
+</div>
+
+<div class="main">
+
+  <div class="card">
+
+    <h3>${key}</h3>
+
+    <a class="btn" href="/file/${key}">⬇ Download</a>
+
+    <br><br>
+
+    <video controls autoplay>
+      <source src="/file/${key}">
+    </video>
+
+  </div>
+
+</div>
+
+</body>
+</html>
+`);
+}
